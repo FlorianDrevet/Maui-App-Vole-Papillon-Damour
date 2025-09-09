@@ -7,6 +7,7 @@ using ShopAppVpd.Databases;
 using ShopAppVpd.Interfaces;
 using ShopAppVpd.Services;
 using ShopAppVpd.Settings;
+using ShopAppVpd.ViewModels;
 
 namespace ShopAppVpd;
 
@@ -24,17 +25,18 @@ public static class MauiProgram
                 fonts.AddFont("CaveatBrush-Regular.ttf", "CaveatBrushRegular");
             });
         
-        using var stream = Assembly.GetExecutingAssembly()
-            .GetManifestResourceStream("ShopAppVpd.appsettings.json");
-        
+        var assembly = Assembly.GetExecutingAssembly();
+        var appSettings = $"{assembly.GetName().Name}.appsettings.json";
+        using var stream = assembly.GetManifestResourceStream(appSettings);
         var config = new ConfigurationBuilder()
             .AddJsonStream(stream)
             .Build();
-
         builder.Configuration.AddConfiguration(config);
         
         builder.Services.AddSingleton<ProductDatabase>();
         builder.Services.AddTransient<IProductService, ProductService>();
+        builder.Services.AddSingleton<MainViewModel>();
+        builder.Services.AddSingleton<MainPage>();
         
         var vpdSettings = config.GetSection("VpdSettings");
         builder.Services

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:ShopAppVpd.Views"
              x:Class="ShopAppVpd.MainPage">
-
 
     <Grid RowDefinitions="Auto,*">
 
@@ -11,47 +11,73 @@
               HeightRequest="60"
               Padding="10">
 
-            <!-- Conteneur horizontal centré -->
             <HorizontalStackLayout HorizontalOptions="Center"
                                    VerticalOptions="Center"
                                    Spacing="8">
-
-            <!-- TITRE -->
-            <Label Text="Vole Papillon D'Amour"
-                   VerticalOptions="Center"
-                   TextColor="White"
-                   FontSize="30"
-                   FontFamily="CaveatBrushRegular"
-                   FontAttributes="Bold"/>
+                <Label Text="Vole Papillon D'Amour"
+                       VerticalOptions="Center"
+                       TextColor="White"
+                       FontSize="30"
+                       FontFamily="CaveatBrushRegular"
+                       FontAttributes="Bold"/>
             
-            <!-- IMAGE -->
-            <Image Source="logo.png"
-                   HeightRequest="60"
-                   WidthRequest="60"
-                   VerticalOptions="Center"/>
+                <Image Source="logo.png"
+                       HeightRequest="60"
+                       WidthRequest="60"
+                       VerticalOptions="Center"/>
             </HorizontalStackLayout>
-
         </Grid>
 
         <!-- CONTENU -->
-        <Grid ColumnDefinitions="7*,3*" Grid.Row="1"> <!-- 70% / 30% -->
+        <Grid ColumnDefinitions="7*,3*" Grid.Row="1">
 
-            <!-- Partie gauche (70%) -->
-            <StackLayout Grid.Column="0" BackgroundColor="LightBlue" Padding="20">
-                <Label Text="Partie gauche 70%" 
-                       HorizontalOptions="Center" 
-                       VerticalOptions="Center"/>
-            </StackLayout>
+            <!-- Partie gauche : liste produits -->
+            <Grid RowDefinitions="Auto,Auto,*">
 
-            <!-- Partie droite (30%) -->
+                <!-- BARRE DES CATEGORIES -->
+                <CollectionView Grid.Row="0"
+                                ItemsSource="{Binding Categories}"
+                                SelectionMode="Single"
+                                SelectedItem="{Binding SelectedCategory}"
+                                ItemsLayout="HorizontalList"
+                                BackgroundColor="#00BFFF"
+                                Margin="0,0,0,5">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout Padding="10" Spacing="5" HorizontalOptions="Center">
+                                <Image Source="{Binding Icon}" WidthRequest="30" HeightRequest="30"/>
+                                <Label Text="{Binding Name}" 
+                                       TextColor="White"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Center"/>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- LISTE PRODUITS -->
+                <CollectionView Grid.Row="2"
+                                ItemsSource="{Binding FilteredProducts}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <views:ProductCard />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </Grid>
+
+            <!-- Partie droite -->
             <StackLayout Grid.Column="1" BackgroundColor="LightGray" Padding="20">
-                <Label Text="Partie droite 30%" 
+                <Label Text="Détails ou autre contenu ici" 
                        HorizontalOptions="Center" 
                        VerticalOptions="Center"/>
             </StackLayout>
 
         </Grid>
-
     </Grid>
-
 </ContentPage>
