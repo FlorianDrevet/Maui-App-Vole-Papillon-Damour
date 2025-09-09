@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:ShopAppVpd.Views"
@@ -7,7 +8,7 @@
     <Grid RowDefinitions="Auto,*">
 
         <!-- BARRE EN HAUT -->
-        <Grid BackgroundColor="{StaticResource Primary}" 
+        <Grid BackgroundColor="{StaticResource Primary}"
               HeightRequest="60"
               Padding="10">
 
@@ -19,20 +20,20 @@
                        TextColor="White"
                        FontSize="30"
                        FontFamily="CaveatBrushRegular"
-                       FontAttributes="Bold"/>
-            
+                       FontAttributes="Bold" />
+
                 <Image Source="logo.png"
                        HeightRequest="60"
                        WidthRequest="60"
-                       VerticalOptions="Center"/>
+                       VerticalOptions="Center" />
             </HorizontalStackLayout>
         </Grid>
 
         <!-- CONTENU -->
-        <Grid ColumnDefinitions="7*,3*" Grid.Row="1">
+        <Grid ColumnDefinitions="7*,4,3*" Grid.Row="1">
 
-            <!-- Partie gauche : liste produits -->
-            <Grid RowDefinitions="Auto,Auto,*">
+            <!-- Partie gauche -->
+            <Grid Grid.Column="0" RowDefinitions="Auto,Auto,*">
 
                 <!-- BARRE DES CATEGORIES -->
                 <CollectionView Grid.Row="0"
@@ -40,17 +41,17 @@
                                 SelectionMode="Single"
                                 SelectedItem="{Binding SelectedCategory}"
                                 ItemsLayout="HorizontalList"
-                                BackgroundColor="#00BFFF"
+                                BackgroundColor="{StaticResource Secondary}"
                                 Margin="0,0,0,5">
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <VerticalStackLayout Padding="10" Spacing="5" HorizontalOptions="Center">
-                                <Image Source="{Binding Icon}" WidthRequest="30" HeightRequest="30"/>
-                                <Label Text="{Binding Name}" 
+                                <Image Source="{Binding Icon}" WidthRequest="30" HeightRequest="30" />
+                                <Label Text="{Binding Name}"
                                        TextColor="White"
                                        FontAttributes="Bold"
-                                       HorizontalOptions="Center"/>
+                                       HorizontalOptions="Center" />
                             </VerticalStackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
@@ -58,9 +59,10 @@
 
                 <!-- LISTE PRODUITS -->
                 <CollectionView Grid.Row="2"
+                                Background="{StaticResource White}"
                                 ItemsSource="{Binding FilteredProducts}">
                     <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical" Span="2"/>
+                        <GridItemsLayout Orientation="Vertical" Span="2" />
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -71,13 +73,23 @@
 
             </Grid>
 
+            <!-- Séparateur vertical -->
+            <BoxView Grid.Column="1"
+                     Color="{StaticResource Primary}"
+                     WidthRequest="4"
+                     HorizontalOptions="Fill"
+                     VerticalOptions="Fill" />
+
             <!-- Partie droite -->
-            <StackLayout Grid.Column="1" BackgroundColor="LightGray" Padding="20">
-                <Label Text="Détails ou autre contenu ici" 
-                       HorizontalOptions="Center" 
-                       VerticalOptions="Center"/>
+            <StackLayout Grid.Column="2"
+                         BackgroundColor="{StaticResource White}"
+                         Padding="20">
+                <Label Text="Détails ou autre contenu ici"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
             </StackLayout>
 
         </Grid>
+
     </Grid>
 </ContentPage>
