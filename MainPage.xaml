@@ -3,6 +3,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:ShopAppVpd.Views"
+             xmlns:vm="clr-namespace:ShopAppVpd.ViewModels"
              x:Class="ShopAppVpd.MainPage">
 
     <Grid RowDefinitions="Auto,*">
@@ -55,8 +56,8 @@
                                    HorizontalOptions="Center"
                                    VerticalOptions="Center">
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectCategoryCommand}"
+                                    <TapGestureRecognizer 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=SetSelectedCategoryCommand}"
                                         CommandParameter="{Binding .}" />
                                 </Frame.GestureRecognizers>
 
@@ -90,8 +91,6 @@
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <!-- IMPORTANT: WidthRequest supprimé -->
-                            <!-- C'est la grille qui décide, pas la card -->
                             <views:ProductCard />
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

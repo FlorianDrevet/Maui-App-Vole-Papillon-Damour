@@ -40,6 +40,12 @@ public partial class MainViewModel : ObservableObject
 
         ApplyFilter(ProductSection.Bar);
     }
+    
+    [RelayCommand]
+    private void SetSelectedCategory(Category category)
+    {
+        SelectedCategory = category;
+    }
 
     partial void OnSelectedCategoryChanged(Category value)
     {
