@@ -80,8 +80,7 @@
                 <CollectionView x:Name="ProductCollection"
                                 Grid.Row="2"
                                 ItemsSource="{Binding FilteredProducts}"
-                                Background="{StaticResource White}"
-                                Margin="15">
+                                Background="{StaticResource White}">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical"
                                          Span="2"
