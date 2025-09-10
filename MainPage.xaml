@@ -36,40 +36,69 @@
             <Grid Grid.Column="0" RowDefinitions="Auto,Auto,*">
 
                 <!-- BARRE DES CATEGORIES -->
-                <CollectionView Grid.Row="0"
-                                ItemsSource="{Binding Categories}"
-                                SelectionMode="Single"
-                                SelectedItem="{Binding SelectedCategory}"
-                                ItemsLayout="HorizontalList"
-                                BackgroundColor="{StaticResource Secondary}"
-                                Margin="0,0,0,5">
+                <FlexLayout Grid.Row="0"
+                            BindableLayout.ItemsSource="{Binding Categories}"
+                            Direction="Row"
+                            Wrap="NoWrap"
+                            JustifyContent="SpaceAround"
+                            AlignItems="Center"
+                            Padding="16"
+                            BackgroundColor="{StaticResource Secondary}"
+                            HorizontalOptions="Fill"
+                            VerticalOptions="Center">
 
-                    <CollectionView.ItemTemplate>
+                    <BindableLayout.ItemTemplate>
                         <DataTemplate>
-                            <VerticalStackLayout Padding="10" Spacing="5" HorizontalOptions="Center">
-                                <Image Source="{Binding Icon}" WidthRequest="30" HeightRequest="30" />
-                                <Label Text="{Binding Name}"
-                                       TextColor="White"
-                                       FontAttributes="Bold"
-                                       HorizontalOptions="Center" />
-                            </VerticalStackLayout>
+                            <Frame Padding="8"
+                                   HasShadow="False"
+                                   BackgroundColor="Transparent"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SelectCategoryCommand}"
+                                        CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+
+                                <HorizontalStackLayout Spacing="8" VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Image Source="{Binding Icon}" WidthRequest="35" HeightRequest="35" VerticalOptions="Center"/>
+                                    <Label Text="{Binding Name}"
+                                           VerticalOptions="Center"
+                                           FontSize="25"
+                                           FontFamily="CaveatBrushRegular"
+                                           TextColor="White"
+                                           FontAttributes="Bold"/>
+                                </HorizontalStackLayout>
+                            </Frame>
                         </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+
+
 
                 <!-- LISTE PRODUITS -->
-                <CollectionView Grid.Row="2"
+                <CollectionView x:Name="ProductCollection"
+                                Grid.Row="2"
+                                ItemsSource="{Binding FilteredProducts}"
                                 Background="{StaticResource White}"
-                                ItemsSource="{Binding FilteredProducts}">
+                                Margin="15">
                     <CollectionView.ItemsLayout>
-                        <GridItemsLayout Orientation="Vertical" Span="2" />
+                        <GridItemsLayout Orientation="Vertical"
+                                         Span="2"
+                                         VerticalItemSpacing="15"
+                                         HorizontalItemSpacing="15" />
                     </CollectionView.ItemsLayout>
+
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
+                            <!-- IMPORTANT: WidthRequest supprimé -->
+                            <!-- C'est la grille qui décide, pas la card -->
                             <views:ProductCard />
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+
+
 
             </Grid>
 
