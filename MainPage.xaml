@@ -6,10 +6,11 @@
              xmlns:vm="clr-namespace:ShopAppVpd.ViewModels"
              x:Class="ShopAppVpd.MainPage">
 
-    <Grid RowDefinitions="Auto,*">
+    <Grid RowDefinitions="Auto,*,Auto">
 
         <!-- BARRE EN HAUT -->
         <Grid BackgroundColor="{StaticResource Primary}"
+              Row="0"
               HeightRequest="60"
               Padding="10">
 
@@ -156,6 +157,28 @@
             </StackLayout>
 
         </Grid>
+        
+        <!-- BARRE EN BAS -->
+        <Grid BackgroundColor="{StaticResource Primary}"
+              Row="2"
+              HeightRequest="60"
+              Padding="10">
 
+            <HorizontalStackLayout HorizontalOptions="Center"
+                                   VerticalOptions="Center"
+                                   Spacing="8">
+                <Image Source="caisse.png"
+                       HeightRequest="35"
+                       WidthRequest="35"
+                       VerticalOptions="Center" />
+                
+                <Label Text="Caisse"
+                       VerticalOptions="Center"
+                       TextColor="White"
+                       FontSize="30"
+                       FontFamily="CaveatBrushRegular"
+                       FontAttributes="Bold" />
+            </HorizontalStackLayout>
+        </Grid>
     </Grid>
 </ContentPage>
