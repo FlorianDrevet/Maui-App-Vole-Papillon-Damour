@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ShopAppVpd.Apis.Enums;
@@ -13,18 +14,14 @@ public partial class MainViewModel : ObservableObject
 
     public ObservableCollection<Product> Products { get; } = new();
     public ObservableCollection<Product> FilteredProducts { get; } = new();
-    public ObservableCollection<Category> Categories { get; } = new();
 
-    [ObservableProperty]
-    private Category selectedCategory;
+    public List<Category> Categories { get; } = Constants.Categories.All;
+
+    [ObservableProperty] private Category _selectedCategory = Constants.Categories.Buvette;
 
     public MainViewModel(IProductService productService)
     {
         _productService = productService;
-
-        Categories.Add(new Category { Name = "Buvette", Icon = "drink.png", Section = ProductSection.Bar});
-        Categories.Add(new Category { Name = "Loto", Icon = "loto.png", Section = ProductSection.Bingo});
-        Categories.Add(new Category { Name = "Livres", Icon = "book.png", Section = ProductSection.Book});
 
         LoadProductsCommand.Execute(null);
     }
