@@ -21,7 +21,7 @@
                    Aspect="AspectFit"
                    Grid.Column="0"/>
 
-            <!-- Nom + prix -->
+            <!-- Price -->
             <VerticalStackLayout Grid.Column="1"
                                  Padding="10,0"
                                  VerticalOptions="Center">
