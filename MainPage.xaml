@@ -148,10 +148,22 @@
                      VerticalOptions="Fill" />
 
             <!-- Partie droite -->
-            <StackLayout Grid.Column="2"
-                         BackgroundColor="{StaticResource White}"
-                         Padding="20">
+            <Grid Grid.Column="2"
+                  RowDefinitions="Auto, *, Auto"
+                  BackgroundColor="{StaticResource White}"
+                  Padding="20">
+                
+                <Label
+                    Grid.Row="0"
+                    Text="Le Panier"
+                    HorizontalOptions="Center"
+                    TextColor="{StaticResource Primary}"
+                    FontSize="40"
+                    FontFamily="CaveatBrushRegular"
+                    FontAttributes="Bold" />
+                
                 <CollectionView ItemsSource="{Binding ShoppedProducts}"
+                                Grid.Row="1"
                                 BackgroundColor="Transparent">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -160,18 +172,21 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
                 
-                <Button Text="{Binding CartTotal, StringFormat='Valider Panier - {0:F2}€'}"
+                <Button Text="{Binding CartTotal, StringFormat='{0:F2}€'}"
+                        Grid.Row="2"
                         Command="{Binding ValidateCartCommand}"
                         BackgroundColor="{StaticResource Tertiary}"
                         TextColor="White"
                         FontFamily="CaveatBrushRegular"
+                        FontSize="35"
                         FontAttributes="Bold"
                         CornerRadius="25"
                         HeightRequest="50"
                         HorizontalOptions="Fill"
                         VerticalOptions="End"
+                        Padding="10"
                         Margin="10"/>
-            </StackLayout>
+            </Grid>
 
         </Grid>
         
