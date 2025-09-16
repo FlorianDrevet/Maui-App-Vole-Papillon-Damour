@@ -16,7 +16,6 @@ public partial class MainViewModel : ObservableObject
 
     public ObservableCollection<Product> Products { get; } = new();
     public ObservableCollection<Product> FilteredProducts { get; } = new();
-    
     public ObservableCollection<ShoppedProductViewModel> ShoppedProducts { get; } = new();
 
     public List<Category> Categories { get; } = Constants.Categories.All;
