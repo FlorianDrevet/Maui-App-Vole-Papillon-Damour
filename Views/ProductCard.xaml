@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ShopAppVpd.ViewModels"
              x:Class="ShopAppVpd.Views.ProductCard">
 
     <Frame Padding="10"
@@ -10,6 +12,12 @@
            HasShadow="False"
            WidthRequest="150"
            HeightRequest="180">
+
+        <Frame.GestureRecognizers>
+            <TapGestureRecognizer
+                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=AddToCartCommand}"
+                CommandParameter="{Binding .}" />
+        </Frame.GestureRecognizers>
 
         <VerticalStackLayout VerticalOptions="Center"
                              HorizontalOptions="Center"
@@ -27,13 +35,13 @@
                    WidthRequest="80"
                    HeightRequest="80"
                    Aspect="AspectFit"
-                   HorizontalOptions="Center"/>
+                   HorizontalOptions="Center" />
 
             <!-- Prix -->
             <Label Text="{Binding Price, StringFormat='{0:F2} €'}"
                    FontSize="14"
                    TextColor="{StaticResource Primary}"
-                   HorizontalOptions="Center"/>
+                   HorizontalOptions="Center" />
         </VerticalStackLayout>
 
     </Frame>

@@ -151,9 +151,26 @@
             <StackLayout Grid.Column="2"
                          BackgroundColor="{StaticResource White}"
                          Padding="20">
-                <Label Text="Détails ou autre contenu ici"
-                       HorizontalOptions="Center"
-                       VerticalOptions="Center" />
+                <CollectionView ItemsSource="{Binding ShoppedProducts}"
+                                BackgroundColor="Transparent">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <views:ShopedProductCard />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
+                <Button Text="{Binding CartTotal, StringFormat='Valider Panier - {0:F2}€'}"
+                        Command="{Binding ValidateCartCommand}"
+                        BackgroundColor="{StaticResource Tertiary}"
+                        TextColor="White"
+                        FontFamily="CaveatBrushRegular"
+                        FontAttributes="Bold"
+                        CornerRadius="25"
+                        HeightRequest="50"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="End"
+                        Margin="10"/>
             </StackLayout>
 
         </Grid>

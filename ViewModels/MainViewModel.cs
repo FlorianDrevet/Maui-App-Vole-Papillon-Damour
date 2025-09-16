@@ -6,6 +6,7 @@ using ShopAppVpd.Apis.Enums;
 using ShopAppVpd.Dtos;
 using ShopAppVpd.Interfaces;
 using ShopAppVpd.Models;
+using ShopAppVpd.Views;
 
 namespace ShopAppVpd.ViewModels;
 
@@ -15,6 +16,8 @@ public partial class MainViewModel : ObservableObject
 
     public ObservableCollection<Product> Products { get; } = new();
     public ObservableCollection<Product> FilteredProducts { get; } = new();
+    
+    public ObservableCollection<ShoppedProductViewModel> ShoppedProducts { get; } = new();
 
     public List<Category> Categories { get; } = Constants.Categories.All;
     
@@ -23,6 +26,9 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] private Category _selectedCategory = Constants.Categories.Buvette;
     
     [ObservableProperty] private FoodSection _selectedFoodSection = Constants.FoodSections.Salt;
+    
+    public double CartTotal => ShoppedProducts.Sum(c => c.Total);
+    
     public bool IsFoodSectionVisible => SelectedCategory.Section == ProductSection.Bar;
 
     public MainViewModel(IProductService productService)
@@ -30,6 +36,22 @@ public partial class MainViewModel : ObservableObject
         _productService = productService;
 
         LoadProductsCommand.Execute(null);
+    }
+    
+    [RelayCommand]
+    private void AddToCart(Product product)
+    {
+        var existing = ShoppedProducts.FirstOrDefault(c => c.Product.Id == product.Id);
+        if (existing is not null)
+        {
+            existing.Quantity++;
+        }
+        else
+        {
+            ShoppedProducts.Add(new ShoppedProductViewModel(product, 1));
+        }
+
+        OnPropertyChanged(nameof(CartTotal));
     }
 
     [RelayCommand]
@@ -55,6 +77,31 @@ public partial class MainViewModel : ObservableObject
     private void SetSelectedFoodSection(FoodSection foodSection)
     {
         SelectedFoodSection = foodSection;
+    }
+    
+    [RelayCommand]
+    private void IncreaseQuantity(ShoppedProductViewModel item)
+    {
+        item.IncrementQuantity();
+        OnPropertyChanged(nameof(CartTotal));
+    }
+
+    [RelayCommand]
+    private void DecreaseQuantity(ShoppedProductViewModel item)
+    {
+        if (item.Quantity > 1)
+            item.DecrementQuantity();
+        else
+            ShoppedProducts.Remove(item);
+        
+        OnPropertyChanged(nameof(CartTotal));
+    }
+    
+    [RelayCommand]
+    private void ValidateCart()
+    {
+        ShoppedProducts.Clear();
+        OnPropertyChanged(nameof(CartTotal));
     }
 
     partial void OnSelectedCategoryChanged(Category value)
