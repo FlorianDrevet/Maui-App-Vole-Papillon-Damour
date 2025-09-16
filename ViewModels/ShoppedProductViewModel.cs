@@ -8,7 +8,7 @@ public partial class ShoppedProductViewModel: ObservableObject
     public Product Product { get; }
     
     [ObservableProperty]
-    private int _quantity;
+    private int _quantity = 1;
 
     public double Total => Product.Price * Quantity;
 
