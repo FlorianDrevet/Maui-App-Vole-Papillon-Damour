@@ -81,6 +81,7 @@
                 <!-- LISTE PRODUITS -->
                 <CollectionView x:Name="ProductCollection"
                                 Grid.Row="1"
+                                Margin="0,20,0,20"
                                 ItemsSource="{Binding FilteredProducts}"
                                 Background="{StaticResource White}">
                     <CollectionView.ItemsLayout>
@@ -178,14 +179,13 @@
                         BackgroundColor="{StaticResource Tertiary}"
                         TextColor="White"
                         FontFamily="CaveatBrushRegular"
-                        FontSize="35"
+                        FontSize="30"
                         FontAttributes="Bold"
                         CornerRadius="25"
                         HeightRequest="50"
                         HorizontalOptions="Fill"
-                        VerticalOptions="End"
-                        Padding="10"
-                        Margin="10"/>
+                        VerticalOptions="Center"
+                        Padding="10"/>
             </Grid>
 
         </Grid>
@@ -193,21 +193,21 @@
         <!-- BARRE EN BAS -->
         <Grid BackgroundColor="{StaticResource Primary}"
               Row="2"
-              HeightRequest="60"
+              HeightRequest="40"
               Padding="10">
 
             <HorizontalStackLayout HorizontalOptions="Center"
                                    VerticalOptions="Center"
                                    Spacing="8">
                 <Image Source="caisse.png"
-                       HeightRequest="35"
-                       WidthRequest="35"
+                       HeightRequest="25"
+                       WidthRequest="25"
                        VerticalOptions="Center" />
                 
                 <Label Text="Caisse"
                        VerticalOptions="Center"
                        TextColor="White"
-                       FontSize="30"
+                       FontSize="20"
                        FontFamily="CaveatBrushRegular"
                        FontAttributes="Bold" />
             </HorizontalStackLayout>

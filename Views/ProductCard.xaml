@@ -12,8 +12,8 @@
            BackgroundColor="{StaticResource White}"
            BorderColor="{StaticResource Tertiary}"
            HasShadow="False"
-           WidthRequest="150"
-           HeightRequest="180">
+           WidthRequest="140"
+           HeightRequest="175">
 
         <Frame.GestureRecognizers>
             <TapGestureRecognizer
@@ -30,7 +30,9 @@
                    FontAttributes="Bold"
                    HorizontalOptions="Center"
                    FontSize="16"
-                   TextColor="{StaticResource Primary}" />
+                   TextColor="{StaticResource Primary}"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center" />
 
             <!-- Image -->
             <Image Source="{Binding UrlImage}"

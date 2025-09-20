@@ -38,8 +38,8 @@
             <!-- Bouton - -->
             <Button Text="−"
                     Grid.Column="2"
-                    WidthRequest="30"
-                    HeightRequest="30"
+                    WidthRequest="20"
+                    HeightRequest="20"
                     BackgroundColor="{StaticResource Tertiary}"
                     Padding="0"
                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=DecreaseQuantityCommand}"
@@ -58,8 +58,8 @@
             <!-- Bouton + -->
             <Button Text="+"
                     Grid.Column="4"
-                    WidthRequest="30"
-                    HeightRequest="30"
+                    WidthRequest="15"
+                    HeightRequest="15"
                     Padding="0"
                     BackgroundColor="{StaticResource Tertiary}"
                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=IncreaseQuantityCommand}"
