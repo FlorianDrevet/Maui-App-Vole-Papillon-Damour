@@ -22,3 +22,4 @@ to manage sales, track transactions, and stay functional even without an interne
 # 📸 Screenshots
 
 ![img.png](/img.png)
+![img2.png](/img2.png)
