@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:views="clr-namespace:ShopAppVpd.Views"
              xmlns:vm="clr-namespace:ShopAppVpd.ViewModels"
+             Background="{StaticResource White}"
              x:Class="ShopAppVpd.MainPage">
 
     <Grid RowDefinitions="Auto,*,Auto">

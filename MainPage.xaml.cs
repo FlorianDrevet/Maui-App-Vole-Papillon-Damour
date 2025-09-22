@@ -20,7 +20,7 @@ public partial class MainPage : ContentPage
 
         if (ProductCollection?.ItemsLayout is GridItemsLayout grid)
         {
-            double cardMinWidth = 200;
+            double cardMinWidth = 225;
             double spacing = 15;
             double totalMargin = 30;
             
